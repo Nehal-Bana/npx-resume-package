@@ -15,31 +15,36 @@ const resume = {
   title: "Java Software Engineer",
   location: "Bangalore, India",
   linkedin: "https://linkedin.com/in/nehal-bana",
-  email: "nehal@example.com",
-  summary: "Concise summary describing your strongest skills and what you bring to the role.",
-  skills: ["Java", "Spring Boot", "SQL", "Docker", "Kubernetes", "DSA"],
+  email: "nehalbana27@gmail.com",
+  summary: "Experienced Java Backend Developer with expertise in Spring Boot, Kafka, Redis, AWS, and microservices architecture. Proven track record of designing and deploying scalable, secure, and resilient systems, including AI-driven applications. Strong background in Core Java, system design, REST APIs, SQL/MySQL, and NoSQL. Enthusiastic about cloud technologies, continuous integration, and delivering high-quality code in agile environments.",
+  skills: ["Java", "Spring Boot", "SQL", "Docker", "Kubernetes", "DSA", "NodeJs", "Microservises", "MySQL"],
   experience: [
-    {
-      company: "Qspear Consultancy Services Pvt. Ltd.",
-      role: "Java Developer Intern",
-      period: "2023",
+     {
+      company: "AccelGrowth Technology pvt. ltd.",
+      role: "Java Developer",
+      period: "2024 - Present",
       bullets: [
-        "Implemented REST endpoints and unit tests.",
-        "Optimized database queries to reduce latency by X%."
+         "Developed a scalable resume processing system for handling uploads, AI summaries, and recruiter notifications, ensuring horizontal scalability.",
+      "Designed a robust Java-based upload service with file validation, temporary storage, Redis caching, and S3 persistent storage.",
+      "Built a document processing service in Java integrating with Kafka for efficient text extraction from various document formats and robust job distribution.",
+      "Implemented Kafka-based asynchronous communication between microservices to generate evaluation reports and send notifications via email.",
+      "Created an AI summarization service using Java integrated with the Ollama model to analyze resumes and job descriptions, generating personalized PDF scorecards and intelligent candidate-job match insights using a CV parser class."
       ]
     },
     {
-      company: "Company B",
-      role: "Software Engineer",
-      period: "2024 - Present",
+      company: "Qspear Consultancy Services Pvt. Ltd.",
+      role: "Java Developer Trainee",
+      period: "2023",
       bullets: [
-        "Built microservices using Spring Boot.",
-        "Designed CI/CD pipelines."
-      ]
-    }
+        "Developed and implemented comprehensive software development standards to enhance code quality and team collaboration.",
+      "Implemented a priming solution to eliminate latency spikes caused by lazy initialization of beans and configuration loading, improving customer experience.",
+      "Designed and implemented monitoring and alerting systems for legacy applications to ensure reliability and proactive issue resolution."
+    ]
+    },
+
   ],
   education: [
-    { degree: "B.Tech Computer Science", institution: "ABC University", year: "2020" }
+    { degree: "B.Tech Computer Science", institution: "Dr. A.P.J Abdul Kalam Technical University", year: "2020" }
   ]
 };
 
