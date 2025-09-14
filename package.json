@@ -1,6 +1,6 @@
 {
   "name": "nehalbana",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Nehal Bana — terminal resume",
   "main": "index.js",
   "bin": {

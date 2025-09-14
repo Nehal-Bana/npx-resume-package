@@ -4,8 +4,9 @@
 /*
   Minimal resume CLI (no external deps).
   Usage:
-    node index.js
-    node index.js --json      # prints JSON for programmatic use
+    npx nehalbana
+    npx nehalbana --qualification
+    npx nehalbana --experience
 */
 
 const args = process.argv.slice(2);
@@ -19,16 +20,16 @@ const resume = {
   summary: "Experienced Java Backend Developer with expertise in Spring Boot, Kafka, Redis, AWS, and microservices architecture. Proven track record of designing and deploying scalable, secure, and resilient systems, including AI-driven applications. Strong background in Core Java, system design, REST APIs, SQL/MySQL, and NoSQL. Enthusiastic about cloud technologies, continuous integration, and delivering high-quality code in agile environments.",
   skills: ["Java", "Spring Boot", "SQL", "Docker", "Kubernetes", "DSA", "NodeJs", "Microservises", "MySQL"],
   experience: [
-     {
+    {
       company: "AccelGrowth Technology pvt. ltd.",
       role: "Java Developer",
       period: "2024 - Present",
       bullets: [
-         "Developed a scalable resume processing system for handling uploads, AI summaries, and recruiter notifications, ensuring horizontal scalability.",
-      "Designed a robust Java-based upload service with file validation, temporary storage, Redis caching, and S3 persistent storage.",
-      "Built a document processing service in Java integrating with Kafka for efficient text extraction from various document formats and robust job distribution.",
-      "Implemented Kafka-based asynchronous communication between microservices to generate evaluation reports and send notifications via email.",
-      "Created an AI summarization service using Java integrated with the Ollama model to analyze resumes and job descriptions, generating personalized PDF scorecards and intelligent candidate-job match insights using a CV parser class."
+        "Developed a scalable resume processing system for handling uploads, AI summaries, and recruiter notifications, ensuring horizontal scalability.",
+        "Designed a robust Java-based upload service with file validation, temporary storage, Redis caching, and S3 persistent storage.",
+        "Built a document processing service in Java integrating with Kafka for efficient text extraction from various document formats and robust job distribution.",
+        "Implemented Kafka-based asynchronous communication between microservices to generate evaluation reports and send notifications via email.",
+        "Created an AI summarization service using Java integrated with the Ollama model to analyze resumes and job descriptions, generating personalized PDF scorecards and intelligent candidate-job match insights using a CV parser class."
       ]
     },
     {
@@ -37,22 +38,17 @@ const resume = {
       period: "2023",
       bullets: [
         "Developed and implemented comprehensive software development standards to enhance code quality and team collaboration.",
-      "Implemented a priming solution to eliminate latency spikes caused by lazy initialization of beans and configuration loading, improving customer experience.",
-      "Designed and implemented monitoring and alerting systems for legacy applications to ensure reliability and proactive issue resolution."
-    ]
+        "Implemented a priming solution to eliminate latency spikes caused by lazy initialization of beans and configuration loading, improving customer experience.",
+        "Designed and implemented monitoring and alerting systems for legacy applications to ensure reliability and proactive issue resolution."
+      ]
     },
 
   ],
   education: [
     { degree: "B.Tech Computer Science", institution: "Dr. A.P.J Abdul Kalam Technical University", year: "2020" }
   ]
-};
 
-// Allow machine-readable output
-if (args.includes('--json') || args.includes('-j')) {
-  console.log(JSON.stringify(resume, null, 2));
-  process.exit(0);
-}
+};
 
 // Helpers
 const width = Math.min(process.stdout.columns || 80, 80);
@@ -87,7 +83,45 @@ function renderExperience(exp) {
   }).join('\n\n');
 }
 
-// Build output
+function renderEducation(edu) {
+  return edu.map(e => `${e.degree}, ${e.institution} (${e.year})`).join('\n');
+}
+
+// Machine-readable JSON output
+if (args.includes('--json') || args.includes('-j')) {
+  console.log(JSON.stringify(resume, null, 2));
+  process.exit(0);
+}
+
+// Individual sections
+// --qualification / education
+if (args.includes('--qualification') || args.includes('qualification')) {
+  console.log('=== Education / Qualification ===\n');
+  resume.education.forEach((edu, i) => {
+    console.log(`${i + 1}. ${edu.degree}, ${edu.institution} (${edu.year})`);
+  });
+  process.exit(0);
+}
+
+// --experience
+if (args.includes('--experience') || args.includes('experience')) {
+  console.log('=== Work Experience ===\n');
+  resume.experience.forEach((exp, i) => {
+    console.log(`${i + 1}. ${exp.company} — ${exp.role} (${exp.period})`);
+    exp.bullets.forEach(b => console.log('   • ' + b));
+    console.log(''); // extra line between experiences
+  });
+  process.exit(0);
+}
+
+
+if (args.includes('--description') || args.includes('description')) {
+  console.log('Summary / Description\n-------------------');
+  console.log(wrap(resume.summary, width));
+  process.exit(0);
+}
+
+// Build full resume output
 let out = '';
 out += '='.repeat(width) + '\n';
 out += center(resume.name, width) + '\n';
@@ -98,7 +132,7 @@ out += `Location: ${resume.location}\nLinkedIn: ${resume.linkedin}\nEmail: ${res
 out += 'Summary\n-------\n' + wrap(resume.summary, width) + '\n\n';
 out += 'Skills\n------\n' + resume.skills.join(', ') + '\n\n';
 out += 'Experience\n----------\n' + renderExperience(resume.experience) + '\n\n';
-out += 'Education\n---------\n' + resume.education.map(e => `${e.degree}, ${e.institution} (${e.year})`).join('\n') + '\n\n';
+out += 'Education\n---------\n' + renderEducation(resume.education) + '\n\n';
 out += '='.repeat(width) + '\n';
 
 console.log(out);
