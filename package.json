@@ -1,0 +1,18 @@
+{
+  "name": "@nehal_bana/resume",
+  "version": "1.0.1",
+  "description": "Nehal Bana — terminal resume",
+  "main": "index.js",
+  "bin": {
+    "nehal-bana-resume": "index.js"
+  },
+  "files": [
+    "index.js",
+    "README.md"
+  ],
+  "author": "Nehal Bana <nehalbana27@gmail.com>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}
