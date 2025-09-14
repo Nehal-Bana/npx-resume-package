@@ -1,10 +1,10 @@
 {
-  "name": "@nehal_bana/resume",
-  "version": "1.0.1",
+  "name": "@nehal-bana/resume",
+  "version": "1.0.3",
   "description": "Nehal Bana — terminal resume",
   "main": "index.js",
   "bin": {
-    "nehal-bana-resume": "index.js"
+    "resume": "index.js"
   },
   "files": [
     "index.js",
